@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ['latin'] })
 export default function logIn() {
     return (
         <main className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}>
-            <form action={"/api/loginForm.tsx"} method="post" className="bg-white shadow-md rounded px-10 pt-6 pb-8 mb-4 w-xl max-w-xl">
+            <form action={"/api/loginForm"} method="POST" className="bg-white shadow-md rounded px-10 pt-6 pb-8 mb-4 w-xl max-w-xl">
                 <div>
                     <div className="flex flex-wrap -mx-3 mb-6">
                         <div className="w-full px-3">
