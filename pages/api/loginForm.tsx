@@ -1,5 +1,5 @@
 
-export default function loginHandler(req: { body: any } , res: { status: (arg0: number) => { (): any; new(): any; json: { (arg0: { data: string }): void; new(): any } } }) {
+export default function loginHandler(req: { body: any } , res: any ) {
     const body = req.body
 
     if (!body.email) {
@@ -15,4 +15,6 @@ export default function loginHandler(req: { body: any } , res: { status: (arg0: 
     // Found the name.
     // Sends a HTTP success code
     res.status(200).json({ data:  `${body.email} ${body.password}` })
-  }
+}
+    
+  

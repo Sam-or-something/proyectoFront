@@ -1,12 +1,35 @@
 import Link from "next/link"
 import { Inter } from 'next/font/google'
+import { FormEvent } from "react"
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function register() {
+    const handleSubmit = async (event: FormEvent) => {
+        // Stop the form from submitting and refreshing the page.
+        event.preventDefault()
+    
+        // Cast the event target to an html form
+        const form = event.target as HTMLFormElement
+    
+        // Get data from the form.
+        const data = {
+          name: form.Name.value as string,
+          lastName: form.lastName.value as string,
+          email: form.email.value as string,
+          password: form.password.value as string,
+        }
+
+        const response = await fetch('/api/loginForm', {body: JSON.stringify(data), headers: { 'Content-Type': 'application/json', }, method: 'POST',})
+    
+        // Get the response data from server as JSON.
+        // If server returns the name submitted, that means the form works.
+        const result = await response.json()
+        alert(`esto es lo que se mando ${result.data}`)
+    }
     return (
         <main className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`} >
-            <form action="api/registerForm" method="POST" className="bg-white shadow-md rounded px-10 pt-6 pb-8 mb-4 w-lg max-w-lg">
+            <form className="bg-white shadow-md rounded px-10 pt-6 pb-8 mb-4 w-lg max-w-lg">
                 <label className="block uppercase tracking-wide text-gray-700 text-lg font-bold mb-6">
                     Registrate aca
                 </label>
@@ -15,7 +38,7 @@ export default function register() {
                         <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="name">
                             NOMBRE
                         </label>
-                        <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="name" name="name" type="text"/>
+                        <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="name" name="Name" type="text"/>
                     </div>
                     <div className="w-full md:w-1/2 px-3">
                         <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="lastName">

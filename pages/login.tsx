@@ -1,12 +1,34 @@
 import { Inter } from 'next/font/google'
 import Link from 'next/link'
+import { FormEvent } from 'react'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function logIn() {
+    const handleSubmit = async (event: FormEvent) => {
+        // Stop the form from submitting and refreshing the page.
+        event.preventDefault()
+    
+        // Cast the event target to an html form
+        const form = event.target as HTMLFormElement
+    
+        // Get data from the form.
+        const data = {
+          email: form.email.value as string,
+          password: form.password.value as string,
+        }
+
+        const response = await fetch('/api/loginForm', {body: JSON.stringify(data), headers: { 'Content-Type': 'application/json', }, method: 'POST',})
+    
+        // Get the response data from server as JSON.
+        // If server returns the name submitted, that means the form works.
+        const result = await response.json()
+        alert(`esto es lo que se mando ${result.data}`)
+    }
+    
     return (
         <main className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}>
-            <form action={"/api/loginForm"} method="POST" className="bg-white shadow-md rounded px-10 pt-6 pb-8 mb-4 w-xl max-w-xl">
+            <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-10 pt-6 pb-8 mb-4 w-xl max-w-xl">
                 <div>
                     <div className="flex flex-wrap -mx-3 mb-6">
                         <div className="w-full px-3">
