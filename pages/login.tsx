@@ -28,11 +28,11 @@ export default function logIn() {
     
     return (
         <main className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}>
-            <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-10 pt-6 pb-8 mb-4 w-xl max-w-xl">
+            <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-10 pt-8 pb-10 mb-4 w-xl max-w-xl">
                 <div>
                     <div className="flex flex-wrap -mx-3 mb-6">
                         <div className="w-full px-3">
-                            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="email">
+                            <label className="block uppercase tracking-wide text-gray-700 text-md font-bold mb-2" htmlFor="email">
                                 EMAIL
                             </label>
                             <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="email" name='email' type="email" />
