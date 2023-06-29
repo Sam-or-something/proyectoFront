@@ -6,16 +6,16 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function logIn() {
     const handleSubmit = async (event: FormEvent) => {
-        // Stop the form from submitting and refreshing the page.
+        
         event.preventDefault()
 
-        // Cast the event target to an html form
+        
         const form = event.target as HTMLFormElement
 
         console.log(form.email.value);
         console.log(form.password.value);
 
-        // Get data from the form.
+
         const data = {
             email: form.email.value as string,
             password: form.password.value as string,
@@ -28,19 +28,18 @@ export default function logIn() {
                 body: JSON.stringify(data)
             })
 
-        // Get the response data from server as JSON.
-        // If server returns the name submitted, that means the form works.
+
         const result = await response.json()
         console.log(result);
     }
 
     return (
         <main className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}>
-            <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-10 pt-8 pb-10 mb-4 w-xl max-w-xl">
+            <form onSubmit = {handleSubmit} className="bg-white shadow-md rounded px-10 pt-8 pb-10 mb-4 w-xl max-w-xl">
                 <div>
                     <div className="flex flex-wrap -mx-3 mb-6">
                         <div className="w-full px-3">
-                            <label className="block uppercase tracking-wide text-gray-700 text-md font-bold mb-2" htmlFor="email">
+                            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="email">
                                 EMAIL
                             </label>
                             <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="email" name='email' type="email" />

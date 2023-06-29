@@ -14,28 +14,32 @@ export default function register() {
     
         // Get data from the form.
         const data = {
-          name: form.Name.value as string,
+          Name: form.Name.value as string,
           lastName: form.lastName.value as string,
           email: form.email.value as string,
           password: form.password.value as string,
         }
-
-        const response = await fetch('/api/loginForm', {body: JSON.stringify(data), headers: { 'Content-Type': 'application/json', }, method: 'POST',})
+        //const response = await fetch('/api/loginForm',
+        const response = await fetch('http://localhost:9000/register',
+            {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
     
-        // Get the response data from server as JSON.
-        // If server returns the name submitted, that means the form works.
+    
         const result = await response.json()
-        alert(`esto es lo que se mando ${result.data}`)
+        console.log(result)
     }
     return (
         <main className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`} >
-            <form className="bg-white shadow-md rounded px-10 pt-6 pb-8 mb-4 w-lg max-w-lg">
+            <form onSubmit = {handleSubmit} className="bg-white shadow-md rounded px-10 pt-6 pb-8 mb-4 w-lg max-w-lg"  >
                 <label className="block uppercase tracking-wide text-gray-700 text-lg font-bold mb-6">
-                    Registrate aca
+                    Registrate acá
                 </label>
                 <div className="flex flex-wrap -mx-3 mb-6">
                     <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                        <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="name">
+                        <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="Name">
                             NOMBRE
                         </label>
                         <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="name" name="Name" type="text"/>
