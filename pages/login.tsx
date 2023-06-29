@@ -8,24 +8,32 @@ export default function logIn() {
     const handleSubmit = async (event: FormEvent) => {
         // Stop the form from submitting and refreshing the page.
         event.preventDefault()
-    
+
         // Cast the event target to an html form
         const form = event.target as HTMLFormElement
-    
+
+        console.log(form.email.value);
+        console.log(form.password.value);
+
         // Get data from the form.
         const data = {
-          email: form.email.value as string,
-          password: form.password.value as string,
+            email: form.email.value as string,
+            password: form.password.value as string,
         }
 
-        const response = await fetch('/api/loginForm', {body: JSON.stringify(data), headers: { 'Content-Type': 'application/json', }, method: 'POST',})
-    
+        const response = await fetch('http://localhost:9000/login',
+            {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+
         // Get the response data from server as JSON.
         // If server returns the name submitted, that means the form works.
         const result = await response.json()
-        alert(`esto es lo que se mando ${result.data}`)
+        console.log(result);
     }
-    
+
     return (
         <main className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}>
             <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-10 pt-8 pb-10 mb-4 w-xl max-w-xl">
@@ -44,7 +52,7 @@ export default function logIn() {
                             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="password">
                                 CONTRASEÑA
                             </label>
-                            <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="password" name='password' type="password"  />
+                            <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="password" name='password' type="password" />
                         </div>
                     </div>
 
