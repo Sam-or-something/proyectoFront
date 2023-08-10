@@ -61,7 +61,7 @@ export default function logIn() {
                         </button>
 
                         <Link className="inline-block align-baseline font-bold text-xs text-blue-500 hover:text-blue-800 px-3" href="/register">
-                            No tienes cuenta? registrate aquí.
+                            No tienes cuenta? Registrate aquí.
                         </Link>
                     </div>
                 </div>
