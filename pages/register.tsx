@@ -1,10 +1,16 @@
 import Link from "next/link"
 import { Inter } from 'next/font/google'
 import { FormEvent } from "react"
+import { useRouter } from "next/navigation"
 
 const inter = Inter({ subsets: ['latin'] })
 
+
+
 export default function register() {
+
+    const router = useRouter()
+
     const handleSubmit = async (event: FormEvent) => {
         // Stop the form from submitting and refreshing the page.
         event.preventDefault()
@@ -29,6 +35,7 @@ export default function register() {
     
     
         const result = await response.json()
+        router.push('/login')
         console.log(result)
     }
     return (

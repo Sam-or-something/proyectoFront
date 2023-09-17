@@ -1,15 +1,19 @@
+'use client'
+
 import { Inter } from 'next/font/google'
 import Link from 'next/link'
+import { Result } from 'postcss';
+
 import { FormEvent } from 'react'
 
 const inter = Inter({ subsets: ['latin'] })
+
 
 export default function logIn() {
     const handleSubmit = async (event: FormEvent) => {
         
         event.preventDefault()
 
-        
         const form = event.target as HTMLFormElement
 
         console.log(form.email.value);
@@ -29,8 +33,15 @@ export default function logIn() {
             })
 
 
-        const result = await response.json()
-        console.log(result);
+        const devol = await response.json()
+        
+         
+
+        // Set a cookie with the secure and HttpOnly flags
+        const token = devol.token;
+        
+        localStorage.setItem('jwtToken', token)
+
     }
 
     return (
