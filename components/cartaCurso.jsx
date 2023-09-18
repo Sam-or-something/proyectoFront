@@ -1,11 +1,10 @@
 import { useRouter } from "next/navigation"
 import { ReactElement, JSXElementConstructor, ReactNode, ReactPortal, PromiseLikeOfReactNode } from "react"
+import React from "react";
 
 
 
-
-
-export function cartaCurso(curso: { name: string, anio: string, materia: string, id: any }) {
+const CartaCurso = (curso) => {
     return (
         <div className="flex flex-col gap-10 p-10" >
             <div className="relative flex w-auto max-w-md flex-col items-start gap-2 overflow-hidden rounded-lg p-4 shadow-lg">
@@ -19,3 +18,4 @@ export function cartaCurso(curso: { name: string, anio: string, materia: string,
 
     )
 }
+export default CartaCurso

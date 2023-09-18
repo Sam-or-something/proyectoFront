@@ -1,11 +1,7 @@
 'use client'
 import { Inter } from 'next/font/google'
-import Link from 'next/link'
 import { FormEvent } from 'react'
-import logIn from './login'
 import { useRouter } from "next/navigation"
-
-
 
 const inter = Inter({ subsets: ['latin'] })
 
