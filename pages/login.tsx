@@ -25,7 +25,7 @@ export default function logIn() {
             password: form.password.value as string,
         }
 
-        const response = await fetch('http://localhost:9000/login',
+        const response = await fetch('https://proyecto-jade-eta.vercel.app/login',
             {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
