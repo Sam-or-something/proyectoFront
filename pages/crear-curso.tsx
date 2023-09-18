@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function crearCurso() {
 
-    const router = useRouter()
+    const Router = useRouter()
 
     const handleSubmit = async (event: FormEvent) => {
         // Stop the form from submitting and refreshing the page.
@@ -37,7 +37,7 @@ export default function crearCurso() {
 
 
         if (devol.success) {
-            router.push('/cursos')
+            Router.push('/cursos')
         } else {
             alert("Ha ocourrido un error al crear curso. Intente otra vez.")
         }
