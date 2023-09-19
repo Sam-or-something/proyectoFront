@@ -5,9 +5,11 @@ import { useRouter } from "next/navigation"
 
 const inter = Inter({ subsets: ['latin'] })
 
+const Router = useRouter()
+
 export default function crearCurso() {
 
-    const router = useRouter()
+    
 
     const handleSubmit = async (event: FormEvent) => {
         // Stop the form from submitting and refreshing the page.
@@ -37,7 +39,7 @@ export default function crearCurso() {
 
 
         if (devol.success) {
-            router.push('/cursos')
+            Router.push('/cursos')
         } else {
             alert("Ha ocourrido un error al crear curso. Intente otra vez.")
         }
@@ -103,6 +105,5 @@ export default function crearCurso() {
             </form>
         </main>
         // anio, materia, Name, prof -> pide el token. Ninguno con requirement. Name si o si (nombre de curso tipo TIC5F)
-      // buscar como hacer drop down lists
     ) 
 }

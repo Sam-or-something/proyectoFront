@@ -2,35 +2,7 @@
 import CartaCurso from '@/components/cartaCurso';
 import React, { useState, useEffect } from 'react';
 
-function Profile(){
-    const [data, setData] = useState(null)
-    const [isLoading, setLoading] = useState(false)
 
-    useEffect(() => {
-        setLoading(true)
-        fetch('http://localhost:9000/cursos',
-        {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-        })
-        .then((res) => res.json())
-        .then((data) => {
-            setData(data)
-            setLoading(false)
-        })
-    },[])
-
-    if (isLoading) return <p>Loading...</p>
-    if (!data) return <p>No profile data</p>
-
-    return(
-        <div>
-            <h1>(data.name)</h1>
-            <h1>(data.bio)</h1>
-        </div>
-    )
-}
 /*export default function cursos() {
     
     return(
