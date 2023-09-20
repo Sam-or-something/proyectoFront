@@ -42,11 +42,11 @@ export default function logIn() {
         console.log(devol)
         
         // Set a cookie with the secure and HttpOnly flags
-        const token = devol.token;
+        /*const token = devol.token;
         
         
         localStorage.setItem('jwtToken', token)
-        console.log(localStorage.getItem('jwtToken'))
+        console.log(localStorage.getItem('jwtToken'))*/
     }
 
     return (
