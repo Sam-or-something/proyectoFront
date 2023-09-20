@@ -5,11 +5,11 @@ import { useRouter } from "next/navigation"
 
 const inter = Inter({ subsets: ['latin'] })
 
-const Router = useRouter()
+
 
 export default function Register() {
 
-    
+    const Router = useRouter()
 
     const handleSubmit = async (event: FormEvent) => {
         // Stop the form from submitting and refreshing the page.
