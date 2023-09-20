@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 
 
-export default function register() {
+export default function Register() {
 
     const Router = useRouter()
 

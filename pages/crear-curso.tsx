@@ -5,8 +5,13 @@ import { useRouter } from "next/navigation"
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function crearCurso() {
 
+<<<<<<< HEAD
+=======
+
+export default function CrearCurso() {
+
+>>>>>>> da4caa29b141eb336e7ccb7e5ea089eacac12dee
     const Router = useRouter()
 
     const handleSubmit = async (event: FormEvent) => {
@@ -103,6 +108,5 @@ export default function crearCurso() {
             </form>
         </main>
         // anio, materia, Name, prof -> pide el token. Ninguno con requirement. Name si o si (nombre de curso tipo TIC5F)
-      // buscar como hacer drop down lists
     ) 
 }

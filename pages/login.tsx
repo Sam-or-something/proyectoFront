@@ -28,7 +28,10 @@ export default function logIn() {
         const response = await fetch('https://proyecto-jade-eta.vercel.app/login',
             {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                },
                 body: JSON.stringify(data)
             })
 
