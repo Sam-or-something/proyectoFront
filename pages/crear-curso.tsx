@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 const Router = useRouter()
 
-export default function crearCurso() {
+export default function CrearCurso() {
 
     
 

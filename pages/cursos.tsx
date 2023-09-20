@@ -2,7 +2,6 @@
 import CartaCurso from '@/components/cartaCurso';
 import React, { useState, useEffect } from 'react';
 
-
 /*export default function cursos() {
     
     return(
