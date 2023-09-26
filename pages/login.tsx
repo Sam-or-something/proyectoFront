@@ -38,7 +38,7 @@ export default function logIn() {
 
         const devol = await response.json()
         
-         
+        console.log("hola");
         console.log(devol)
         
         // Set a cookie with the secure and HttpOnly flags
