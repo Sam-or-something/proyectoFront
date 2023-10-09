@@ -37,15 +37,17 @@ export default function logIn() {
 
         const devol = await response.json();
         
-        console.log("hola")
-        console.log(devol)
-        
-        /* Set a cookie with the secure and HttpOnly flags
+
+        // Set a cookie with the secure and HttpOnly flags
         const token = devol.token;
         
         
         localStorage.setItem('jwtToken', token)
-        console.log(localStorage.getItem('jwtToken')) */
+        console.log(localStorage.getItem('jwtToken'))
+
+        if (devol.success === "true" ) {
+            alert("Iniciaste sesion correctamente")
+        }
     }
 
     return (

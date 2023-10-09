@@ -26,7 +26,7 @@ export default function Register() {
           password: form.password.value as string,
         }
         //const response = await fetch('/api/loginForm',
-        const response = await fetch('http://localhost:9000/register',
+        const response = await fetch('https://proyecto-jade-eta.vercel.app/register',
             {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
