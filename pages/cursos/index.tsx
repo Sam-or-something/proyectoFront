@@ -20,22 +20,20 @@ const curso = [{
 },]
 
 
-export default function cursos() {
 
-
-
+export default function () {
 
     return (
-        <main>
-            <div className="grid grid-cols-4 gap-3">
+        <main className = "">
+            <div className="grid grid-cols-4" >
                 {curso.map((curso: any) => (
-                    <CartaCurso curso={curso} key={curso.id} />
+                    CartaCurso(curso)
                 ))}
             </div>
         </main>
     )
-}
 
+}
 
 
 

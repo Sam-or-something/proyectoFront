@@ -17,17 +17,21 @@ const cursos = [{
     materia: "ingles"
 },]
 
+
 export default function () {
 
     return (
-        <main>
-            <div className="grid grid-cols-4 gap-3">
+        <div className="">
+            <div className="grid grid-cols-4" >
                 {cursos.map((curso: any) => (
-                    <CartaCurso curso={curso} key={curso.id} />
+                    CartaCurso(curso)
                 ))}
             </div>
-        </main>
-
-    );
+        </div>
+    )
 
 }
+
+    
+
+
