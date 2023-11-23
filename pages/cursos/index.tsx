@@ -1,6 +1,8 @@
-import CartaCurso from "@/components/cartaCurso";
 
-const cursos = [{
+import CartaCurso from '@/components/cartaCurso';
+import React, { useState, useEffect } from 'react';
+
+const curso = [{
     id: 1134,
     anio: "12",
     name: "5tF",
@@ -17,17 +19,28 @@ const cursos = [{
     materia: "ingles"
 },]
 
-export default function () {
+
+export default function cursos() {
+
+
+
 
     return (
         <main>
             <div className="grid grid-cols-4 gap-3">
-                {cursos.map((curso: any) => (
+                {curso.map((curso: any) => (
                     <CartaCurso curso={curso} key={curso.id} />
                 ))}
             </div>
         </main>
-
-    );
-
+    )
 }
+
+
+
+
+//array con json de cada curso
+//sacar la informacion por cada curso
+
+
+// id, name, materia, anio
