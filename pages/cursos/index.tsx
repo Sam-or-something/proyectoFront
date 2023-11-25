@@ -1,6 +1,7 @@
 
 import CartaCurso from '@/components/cartaCurso';
 import React, { useState, useEffect } from 'react';
+import Navbar from '@/components/Navbar';
 
 const curso = [{
     id: 1134,
@@ -24,7 +25,9 @@ const curso = [{
 export default function () {
 
     return (
+        
         <main className = "">
+            <Navbar></Navbar>
             <div className="grid grid-cols-4" >
                 {curso.map((curso: any) => (
                     CartaCurso(curso)

@@ -1,153 +1,172 @@
 import Navbar from "@/components/Navbar";
-import { info } from "console";
 import { useRouter } from "next/router";
+import addTable from "@/components/table";
+import type { InferGetStaticPropsType, GetStaticProps } from 'next'
+
+const info = {
+    "alumnos": [
+        {
+            "id": 40,
+            "Name": "Sam",
+            "trabajos": [
+                {
+                    "Name": "Prueba",
+                    "idTrabajo": 9,
+                    "idMod": 9,
+                    "nota": "10",
+                    "comentario": "excelente"
+                },
+                {
+                    "Name": "TP1",
+                    "idTrabajo": 13,
+                    "idMod": 10,
+                    "nota": "9",
+                    "comentario": "muy bien"
+                }
+            ]
+        },
+        {
+            "id": 41,
+            "Name": "Sofia",
+            "trabajos": [
+                {
+                    "Name": "Prueba",
+                    "idTrabajo": 10,
+                    "idMod": 9,
+                    "nota": "6",
+                    "comentario": "suficiente, falto desarrollar"
+                },
+                {
+                    "Name": "TP1",
+                    "idTrabajo": 14,
+                    "idMod": 10,
+                    "nota": "8",
+                    "comentario": "bien"
+                }
+            ]
+        },
+        {
+            "id": 42,
+            "Name": "Juan",
+            "trabajos": [
+                {
+                    "Name": "Prueba",
+                    "idTrabajo": 11,
+                    "idMod": 9,
+                    "nota": "2",
+                    "comentario": "sin terminar"
+                },
+                {
+                    "Name": "TP1",
+                    "idTrabajo": 15,
+                    "idMod": 10,
+                    "nota": "1",
+                    "comentario": "hablar sobre falta de comprension de consigna"
+                }
+            ]
+        },
+        {
+            "id": 43,
+            "Name": "Santiago",
+            "trabajos": [
+                {
+                    "Name": "Prueba",
+                    "idTrabajo": 12,
+                    "idMod": 9,
+                    "nota": "0",
+                    "comentario": "sin completar"
+                },
+                {
+                    "Name": "TP1",
+                    "idTrabajo": 16,
+                    "idMod": 10,
+                    "nota": "0",
+                    "comentario": "sin comentario disponible"
+                }
+
+            ]
+        }
+    ]
+}
+
+const alumnosData = info.alumnos
+
 
 export default function cursos() {
     const Router = useRouter()
     const cursoId = Router.query.cursoId
-
-
-    const info = {
-        "alumnos": [
-            {
-                "id": 40,
-                "Name": "Sam",
-                "trabajos": [
-                    {
-                        "Name": "dear god please help ill stop being gay",
-                        "idTrabajo": 7,
-                        "nota": "0",
-                        "comentario": ""
-                    },
-                    {
-                        "Name": "HEYYYY",
-                        "idTrabajo": 8,
-                        "nota": "0",
-                        "comentario": ""
-                    }
-                ]
-            },
-            {
-                "id": 41,
-                "Name": "Sofia",
-                "trabajos": [
-                    {
-                        "Name": "dear god please help ill stop being gay",
-                        "idTrabajo": 7,
-                        "nota": "0",
-                        "comentario": ""
-                    },
-                    {
-                        "Name": "HEYYYY",
-                        "idTrabajo": 8,
-                        "nota": "0",
-                        "comentario": ""
-                    }
-                ]
-            },
-            {
-                "id": 42,
-                "Name": "Juan",
-                "trabajos": [
-                    {
-                        "Name": "dear god please help ill stop being gay",
-                        "idTrabajo": 7,
-                        "nota": "0",
-                        "comentario": ""
-                    },
-                    {
-                        "Name": "HEYYYY",
-                        "idTrabajo": 8,
-                        "nota": "0",
-                        "comentario": ""
-                    }
-                ]
-            },
-            {
-                "id": 43,
-                "Name": "Santiago",
-                "trabajos": [
-                    {
-                        "Name": "dear god please help ill stop being gay",
-                        "idTrabajo": 7,
-                        "nota": "0",
-                        "comentario": ""
-                    },
-                    {
-                        "Name": "HEYYYY",
-                        "idTrabajo": 8,
-                        "nota": "0",
-                        "comentario": ""
-                    }
-                ]
-            }
-        ]
-    }
+    const alumnos = info.alumnos
 
     return (
         <main className="" >
             <Navbar></Navbar>
             <div className="flex min-h-screen flex-col items-center justify-between p-24" id="container">
-                <table className="table-auto bg-white">
-                    <caption>Información Sobre los Alumnos</caption>
-                    <tbody>
-                        <tr>
-                            <th colSpan={2} rowSpan={2}>Alumnos</th>
-                            <th colSpan={3} scope="colgroup">Clothes</th>
-                            <th colSpan={2} scope="colgroup">Accessories</th>
-                        </tr>
-                        <tr>
-                            <th scope="col">Trousers</th>
-                            <th scope="col">Skirts</th>
-                            <th scope="col">Dresses</th>
-                            <th scope="col">Bracelets</th>
-                            <th scope="col">Rings</th>
-                        </tr>
-                        <tr>
-                            <th rowSpan= {3} scope="rowgroup">Belgium</th>
-                            <th scope="row">Antwerp</th>
-                            <td>56</td>
-                            <td>22</td>
-                            <td>43</td>
-                            <td>72</td>
-                            <td>23</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Gent</th>
-                            <td>46</td>
-                            <td>18</td>
-                            <td>50</td>
-                            <td>61</td>
-                            <td>15</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Brussels</th>
-                            <td>51</td>
-                            <td>27</td>
-                            <td>38</td>
-                            <td>69</td>
-                            <td>28</td>
-                        </tr>
-                        <tr>
-                            <th rowSpan={2} scope="rowgroup">The Netherlands</th>
-                            <th scope="row">Amsterdam</th>
-                            <td>89</td>
-                            <td>34</td>
-                            <td>69</td>
-                            <td>85</td>
-                            <td>38</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Utrecht</th>
-                            <td>80</td>
-                            <td>12</td>
-                            <td>43</td>
-                            <td>36</td>
-                            <td>19</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div className="absolute inset-0 bg-grid-slate-100not-prose relative bg-slate-50 rounded-xl overflow-hidden dark:bg-slate-800/25">
+                        <table className="table- bg-white shadow-md rounded border-collapse table-auto w-full text-sm" border={3} id="tabla">
+                            <caption>Información Sobre los Alumnos</caption>
+                            <thead className="table-header-group">
+                                <tr >
+                                    <th className="py-2 px-4 border border-slate-300">Alumno</th>
+                                    <th className="py-2 px-4 border border-slate-300">Trabajos Prácticos</th>
+                                    <th className="py-2 px-4 border border-slate-300">Notas</th>
+                                    <th className="py-2 px-4 border border-slate-300">Comentarios</th>
+                                </tr>
+                            </thead>
+                            <tbody className="" >
+                                {alumnosData.map((alumno) => (
+                                    <tr className="border border-slate-300" key={alumno.id}>
+                                        <td className="py-2 px-4 border border-slate-300">{alumno.Name}</td>
+                                        <td className="">
+                                            {alumno.trabajos.map((trabajo) => (
+                                                <div className="py-2 px-4 border border-slate-300 " key={trabajo.idTrabajo}>
+                                                    {trabajo.Name}
+                                                </div>
+                                            ))}
+                                        </td>
+                                        <td className="items-center border border-slate-300 ">
+                                            {alumno.trabajos.map((trabajo) => (
+                                                <div className="py-2 px-4 text-center border border-slate-300" key={trabajo.idTrabajo}>
+                                                    {trabajo.nota}
+                                                </div>
+                                            ))}
+                                        </td>
+                                        <td >
+                                            {alumno.trabajos.map((trabajo) => (
+                                                <div className="py-2 px-4 border border-slate-300 border-collapse items-center" key={trabajo.idTrabajo}>
+                                                    {trabajo.comentario}
+                                                </div>
+                                            ))}
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                        
+                </div>
             </div>
         </main>
     )
 }
+
+
+type Info = {
+    alumnos: {
+        id: number;
+        Name: string;
+        trabajos: {
+            Name: string;
+            idTrabajo: number;
+            idMod: number;
+            nota: string;
+            comentario: string;
+        }[];
+    }[];
+}
+
+export const getStaticProps = (async (_context) => {
+    const res = await fetch('https://api.github.com/repos/vercel/next.js')
+    const info = await res.json()
+    return { props: { info } }
+  }) satisfies GetStaticProps<{
+    info: Info
+  }>

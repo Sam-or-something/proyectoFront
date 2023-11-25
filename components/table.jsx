@@ -85,22 +85,12 @@ const info = {
     ]
 }
 
-interface Trabajo {
-    Name: string;
-    idTrabajo: number;
-    idMod: number;
-    nota: string;
-    comentario: string;
-}
 
-interface Alumno {
-    id: number;
-    Name: string;
-    trabajos: Trabajo[];
-}
 
-function YourComponent({ info }: { info: { alumnos: Alumno[] } }) {
-    const [alumnosData, setAlumnosData] = useState<Alumno[] | []>([]);
+
+
+const addTable = ({ info }) => {
+    const [alumnosData, setAlumnosData] = useState;
 
     useEffect(() => {
         if (typeof document !== 'undefined') {
@@ -155,5 +145,5 @@ function YourComponent({ info }: { info: { alumnos: Alumno[] } }) {
         </main>
     );
 };
-
+export default addTable;
 
