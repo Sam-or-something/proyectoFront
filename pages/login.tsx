@@ -4,8 +4,9 @@ import { Inter } from 'next/font/google'
 import Link from 'next/link'
 import { Result } from 'postcss';
 import { FormEvent } from 'react'
-import cookie from "cookie"
 import NavbarInicio from '@/components/NavbarInicio';
+import { useCookies } from "react-cookie"
+
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -50,7 +51,12 @@ export default function logIn() {
         if (devol.success === "true") {
             alert("Iniciaste sesion correctamente")
 
-            cookie.serialize("jwtToken", token, { httpOnly: true, secure: true })
+            const [cookie, setCookie] = useCookies(["jwtToken"])
+
+            setCookie('jwtToken', token ,{
+                httpOnly: true,
+                path:"/"
+            })
         }
     }
 

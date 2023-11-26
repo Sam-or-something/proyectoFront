@@ -1,7 +1,7 @@
 import Navbar from "@/components/Navbar";
 import { useRouter } from "next/router";
-import addTable from "@/components/table";
 import type { InferGetStaticPropsType, GetStaticProps } from 'next'
+
 
 const info = {
     "alumnos": [
@@ -162,9 +162,13 @@ type Info = {
         }[];
     }[];
 }
+const jwtToken =""
 
-export const getStaticProps = (async (_context) => {
-    const res = await fetch('https://api.github.com/repos/vercel/next.js')
+export const getStaticProps = (async (_cursoId) => {
+    const res = await fetch('https://api.github.com/repos/vercel/next.js', {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' , authorization : `bearer ${jwtToken}`}
+    })
     const info = await res.json()
     return { props: { info } }
   }) satisfies GetStaticProps<{
