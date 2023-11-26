@@ -33,7 +33,7 @@ export default function CrearCurso() {
         const response = await fetch('http://localhost:9000/crear-curso',
             {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json', Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhbW15QGhvbGEuY29tIiwiaWQiOiIxMCIsImlhdCI6MTcwMTAyNDU3NiwiZXhwIjoxNzAxMDQyNTc2fQ.yTiMBa0cRGO1V1AILjmnjJpGPRafWf9sbt-HzyE3KTo' },
+                headers: { 'Content-Type': 'application/json', Authorization: `Bearer `},
                 body: JSON.stringify(data)
             })
 

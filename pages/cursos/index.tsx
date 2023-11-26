@@ -28,7 +28,7 @@ import type { InferGetStaticPropsType, GetStaticProps } from 'next'
     const response = await fetch('http://localhost:9000/cursos',
 {
     method: 'GET',
-    headers: { 'Content-Type': 'application/json' , authorization : `bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhbW15QGhvbGEuY29tIiwiaWQiOiIxMCIsImlhdCI6MTcwMTAyNDU3NiwiZXhwIjoxNzAxMDQyNTc2fQ.yTiMBa0cRGO1V1AILjmnjJpGPRafWf9sbt-HzyE3KTo`}
+    headers: { 'Content-Type': 'application/json' , authorization : `bearer `}
 })
 
 
@@ -64,7 +64,7 @@ const jwtToken =""
 export const getStaticProps = (async () => {
     const res = await fetch('http://localhost:9000/cursos', {
         method: 'GET',
-        headers: { 'Content-Type': 'application/json' , authorization : `bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhbW15QGhvbGEuY29tIiwiaWQiOiIxMCIsImlhdCI6MTcwMTAyNDU3NiwiZXhwIjoxNzAxMDQyNTc2fQ.yTiMBa0cRGO1V1AILjmnjJpGPRafWf9sbt-HzyE3KTo`}
+        headers: { 'Content-Type': 'application/json' , authorization : `bearer `}
     })
     const curso = await res.json()
     return { props: { curso } }
