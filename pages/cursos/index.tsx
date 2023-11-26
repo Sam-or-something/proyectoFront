@@ -2,43 +2,44 @@
 import CartaCurso from '@/components/cartaCurso';
 import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
-import { cookies } from 'next/headers'
+import type { InferGetStaticPropsType, GetStaticProps } from 'next'
+//import { cookies } from 'next/headers'
 
-// const curso = [{
-//     id: 1134,
-//     anio: "12",
-//     name: "5tF",
-//     materia: "matematica"
-// }, {
-//     id: 245,
-//     anio: "11",
-//     name: "4tc",
-//     materia: "ingles"
-// }, {
-//     id: 1,
-//     anio: "11",
-//     name: "4tf",
-//     materia: "ingles"
-// },]
-const jwtToken =cookies().get("jwtToken")
-let curso: any[]
+ /*const curso = [{
+     id: 1134,
+     anio: "12",
+     name: "5tF",
+     materia: "matematica"
+ }, {
+     id: 245,
+     anio: "11",
+     name: "4tc",
+     materia: "ingles"
+ }, {
+     id: 1,
+     anio: "11",
+     name: "4tf",
+     materia: "ingles"
+ },] */
+//const jwtToken =cookies().get("jwtToken")
+    
 
-const fetchInfo = async () => {
+/*const fetchInfo = async () => {
     const response = await fetch('http://localhost:9000/cursos',
 {
     method: 'GET',
-    headers: { 'Content-Type': 'application/json' , authorization : `bearer ${jwtToken}`}
+    headers: { 'Content-Type': 'application/json' , authorization : `bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhbW15QGhvbGEuY29tIiwiaWQiOiIxMCIsImlhdCI6MTcwMTAyNDU3NiwiZXhwIjoxNzAxMDQyNTc2fQ.yTiMBa0cRGO1V1AILjmnjJpGPRafWf9sbt-HzyE3KTo`}
 })
 
 
-curso = await response.json()
-}
+const curso = await response.json()
+}*/
 
 
-export default function () {
+export default function ({ curso } : InferGetStaticPropsType<typeof getStaticProps>) {
 
     return (
-        <main onLoad={fetchInfo} className = "">
+        <main className = "">
             <Navbar></Navbar>
             <div className="grid grid-cols-4" >
                 {curso.map((curso: any) => (
@@ -51,7 +52,25 @@ export default function () {
 }
 
 
+type Curso = {
+    id: number;
+    anio: string;
+    Name: string;
+    materia: string;
+}[]
 
+const jwtToken =""
+
+export const getStaticProps = (async () => {
+    const res = await fetch('http://localhost:9000/cursos', {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' , authorization : `bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhbW15QGhvbGEuY29tIiwiaWQiOiIxMCIsImlhdCI6MTcwMTAyNDU3NiwiZXhwIjoxNzAxMDQyNTc2fQ.yTiMBa0cRGO1V1AILjmnjJpGPRafWf9sbt-HzyE3KTo`}
+    })
+    const curso = await res.json()
+    return { props: { curso } }
+  }) satisfies GetStaticProps<{
+    curso : Curso
+  }>
 //array con json de cada curso
 //sacar la informacion por cada curso
 

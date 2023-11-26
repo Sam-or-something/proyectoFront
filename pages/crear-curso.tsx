@@ -24,7 +24,7 @@ export default function CrearCurso() {
         const data = {
             Name: form.Name.value as string,
             materia: form.materia.value as string,
-            anio: form.anio.value as string,
+            anio: form.anio.value as number,
             alumnos: form.alumnos.value as string,
 
         }
@@ -33,7 +33,7 @@ export default function CrearCurso() {
         const response = await fetch('http://localhost:9000/crear-curso',
             {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' },
+                headers: { 'Content-Type': 'application/json', Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhbW15QGhvbGEuY29tIiwiaWQiOiIxMCIsImlhdCI6MTcwMTAyNDU3NiwiZXhwIjoxNzAxMDQyNTc2fQ.yTiMBa0cRGO1V1AILjmnjJpGPRafWf9sbt-HzyE3KTo' },
                 body: JSON.stringify(data)
             })
 

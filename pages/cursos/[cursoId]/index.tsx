@@ -1,9 +1,11 @@
 import Navbar from "@/components/Navbar";
-import { useRouter } from "next/router";
-import type { InferGetStaticPropsType, GetStaticProps } from 'next'
+import { useRouter } from "next/dist/client/router";
+import type { InferGetServerSidePropsType, GetServerSideProps, } from 'next'
+import { Key, ReactElement, JSXElementConstructor, ReactNode, ReactPortal, PromiseLikeOfReactNode } from "react";
+import { Console } from "console";
 
 
-const info = {
+/*const info = {
     "alumnos": [
         {
             "id": 40,
@@ -87,16 +89,29 @@ const info = {
             ]
         }
     ]
-}
-
-const alumnosData = info.alumnos
+} */
 
 
-export default function cursos() {
-    const Router = useRouter()
-    const cursoId = Router.query.cursoId
-    const alumnos = info.alumnos
+export const getServerSideProps = (async (context) => {
+    
+    const cursoId = context.query.cursoId
+    
+    
+    const res = await fetch(`http://localhost:9000/cursos/${cursoId}`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' , authorization : `bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhbW15QGhvbGEuY29tIiwiaWQiOiIxMCIsImlhdCI6MTcwMTAyOTQyOCwiZXhwIjoxNzAxMDQ3NDI4fQ.Isz3dEMmczo2pyIV2XDVSCYUiqiHE3nxnoUbY_s4vuc`,
+    }
+    })
+    const info = await res.json()
+    return { props: { info } }
+  }) satisfies GetServerSideProps<{
+    info: Info
+  }>
 
+  
+
+export default function cursos( {info} : InferGetServerSidePropsType<typeof getServerSideProps>) {
+    const alumnosData = info.alumnos
     return (
         <main className="" >
             <Navbar></Navbar>
@@ -113,7 +128,7 @@ export default function cursos() {
                                 </tr>
                             </thead>
                             <tbody className="" >
-                                {alumnosData.map((alumno) => (
+                                {alumnosData.map((alumno: { id: Key | null | undefined; Name: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | PromiseLikeOfReactNode | null | undefined; trabajos: any[]; }) => (
                                     <tr className="border border-slate-300" key={alumno.id}>
                                         <td className="py-2 px-4 border border-slate-300">{alumno.Name}</td>
                                         <td className="">
@@ -162,15 +177,4 @@ type Info = {
         }[];
     }[];
 }
-const jwtToken =""
 
-export const getStaticProps = (async (_cursoId) => {
-    const res = await fetch('https://api.github.com/repos/vercel/next.js', {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' , authorization : `bearer ${jwtToken}`}
-    })
-    const info = await res.json()
-    return { props: { info } }
-  }) satisfies GetStaticProps<{
-    info: Info
-  }>
