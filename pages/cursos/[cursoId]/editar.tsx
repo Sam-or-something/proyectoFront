@@ -1,101 +1,26 @@
-import Navbar from "@/components/Navbar";
-import { useRouter } from "next/dist/client/router";
 import type { InferGetServerSidePropsType, GetServerSideProps, } from 'next'
-import { Key, ReactElement, JSXElementConstructor, ReactNode, ReactPortal, PromiseLikeOfReactNode } from "react";
-import { Console } from "console";
-
-
-/*const info = {
-    "alumnos": [
-        {
-            "id": 40,
-            "Name": "Sam",
-            "trabajos": [
-                {
-                    "Name": "Prueba",
-                    "idTrabajo": 9,
-                    "idMod": 9,
-                    "nota": "10",
-                    "comentario": "excelente"
-                },
-                {
-                    "Name": "TP1",
-                    "idTrabajo": 13,
-                    "idMod": 10,
-                    "nota": "9",
-                    "comentario": "muy bien"
-                }
-            ]
-        },
-        {
-            "id": 41,
-            "Name": "Sofia",
-            "trabajos": [
-                {
-                    "Name": "Prueba",
-                    "idTrabajo": 10,
-                    "idMod": 9,
-                    "nota": "6",
-                    "comentario": "suficiente, falto desarrollar"
-                },
-                {
-                    "Name": "TP1",
-                    "idTrabajo": 14,
-                    "idMod": 10,
-                    "nota": "8",
-                    "comentario": "bien"
-                }
-            ]
-        },
-        {
-            "id": 42,
-            "Name": "Juan",
-            "trabajos": [
-                {
-                    "Name": "Prueba",
-                    "idTrabajo": 11,
-                    "idMod": 9,
-                    "nota": "2",
-                    "comentario": "sin terminar"
-                },
-                {
-                    "Name": "TP1",
-                    "idTrabajo": 15,
-                    "idMod": 10,
-                    "nota": "1",
-                    "comentario": "hablar sobre falta de comprension de consigna"
-                }
-            ]
-        },
-        {
-            "id": 43,
-            "Name": "Santiago",
-            "trabajos": [
-                {
-                    "Name": "Prueba",
-                    "idTrabajo": 12,
-                    "idMod": 9,
-                    "nota": "0",
-                    "comentario": "sin completar"
-                },
-                {
-                    "Name": "TP1",
-                    "idTrabajo": 16,
-                    "idMod": 10,
-                    "nota": "0",
-                    "comentario": "sin comentario disponible"
-                }
-
-            ]
-        }
-    ]
-} */
+import Navbar from '@/components/Navbar'
+import { Key, ReactElement, JSXElementConstructor, ReactNode, ReactPortal, PromiseLikeOfReactNode } from 'react';
+type Info = {
+    alumnos: {
+        id: number;
+        Name: string;
+        trabajos: {
+            Name: string;
+            idTrabajo: number;
+            idMod: number;
+            nota: string;
+            comentario: string;
+        }[];
+    }[];
+}
 
 
 export const getServerSideProps = (async (context) => {
     
     const cursoId = context.query.cursoId
     
+    console.log(cursoId)
     
     const res = await fetch(`http://localhost:9000/cursos/${cursoId}`, {
         method: 'GET',
@@ -108,15 +33,15 @@ export const getServerSideProps = (async (context) => {
     info: Info
   }>
 
-  
 
-export default function cursos( {info} : InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function cursosEditar({info} : InferGetServerSidePropsType<typeof getServerSideProps>){
     const alumnosData = info.alumnos
     return (
         <main className="" >
             <Navbar></Navbar>
             <div className="flex min-h-screen flex-col items-center justify-between p-24" id="container">
                 <div className="absolute inset-0 bg-grid-slate-100not-prose relative bg-slate-50 rounded-xl overflow-hidden dark:bg-slate-800/25">
+                    <form action="">
                         <table className="table- bg-white shadow-md rounded border-collapse table-auto w-full text-sm" border={3} id="tabla">
                             <caption>Información Sobre los Alumnos</caption>
                             <thead className="table-header-group">
@@ -134,21 +59,21 @@ export default function cursos( {info} : InferGetServerSidePropsType<typeof getS
                                         <td className="">
                                             {alumno.trabajos.map((trabajo) => (
                                                 <div className="py-2 px-4 border border-slate-300 " key={trabajo.idTrabajo}>
-                                                    {trabajo.Name}
+                                                    <input type="text" value={trabajo.Name}/>
                                                 </div>
                                             ))}
                                         </td>
                                         <td className="items-center border border-slate-300 ">
                                             {alumno.trabajos.map((trabajo) => (
                                                 <div className="py-2 px-4 text-center border border-slate-300" key={trabajo.idTrabajo}>
-                                                    {trabajo.nota}
+                                                    <input type="text" value={trabajo.nota}/>
                                                 </div>
                                             ))}
                                         </td>
                                         <td >
                                             {alumno.trabajos.map((trabajo) => (
                                                 <div className="py-2 px-4 border border-slate-300 border-collapse items-center" key={trabajo.idTrabajo}>
-                                                    {trabajo.comentario}
+                                                    <input type="text" value={trabajo.comentario} />
                                                 </div>
                                             ))}
                                         </td>
@@ -156,25 +81,9 @@ export default function cursos( {info} : InferGetServerSidePropsType<typeof getS
                                 ))}
                             </tbody>
                         </table>
-                        
+                    </form>
                 </div>
             </div>
         </main>
     )
 }
-
-
-type Info = {
-    alumnos: {
-        id: number;
-        Name: string;
-        trabajos: {
-            Name: string;
-            idTrabajo: number;
-            idMod: number;
-            nota: string;
-            comentario: string;
-        }[];
-    }[];
-}
-

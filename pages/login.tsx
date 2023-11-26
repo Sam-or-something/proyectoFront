@@ -14,7 +14,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 
 export default function logIn() {
-    const handleSubmit = async (event: FormEvent) => {
+    const HandleSubmit = async (event: FormEvent) => {
 
         event.preventDefault()
 
@@ -64,7 +64,7 @@ export default function logIn() {
         <main>
             <NavbarInicio></NavbarInicio>
             <div className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}>
-                <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-10 pt-8 pb-10 mb-4 w-xl max-w-xl">
+                <form onSubmit={HandleSubmit} className="bg-white shadow-md rounded px-10 pt-8 pb-10 mb-4 w-xl max-w-xl">
                     <div>
                         <div className="flex flex-wrap -mx-3 mb-6">
                             <div className="w-full px-3">
