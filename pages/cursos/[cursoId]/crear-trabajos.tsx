@@ -1,7 +1,7 @@
 'use client'
 import { Inter } from 'next/font/google'
 import { FormEvent } from 'react'
-import { useRouter } from "next/navigation"
+import { useRouter } from "next/router"
 import { MultiSelect } from "react-multi-select-component"
 
 const inter = Inter({ subsets: ['latin'] })
@@ -11,7 +11,7 @@ const inter = Inter({ subsets: ['latin'] })
 export default function CrearTrabajo() {
 
     const Router = useRouter()
-
+    const cursoId = Router.query.cursoId
     const handleSubmit = async (event: FormEvent) => {
         // Stop the form from submitting and refreshing the page.
         event.preventDefault()
@@ -22,15 +22,13 @@ export default function CrearTrabajo() {
         // Get data from the form.
         const data = {
             Name: form.Name.value as string,
-            materia: form.materia.value as string,
-            anio: form.anio.value as string,
-            alumnos: form.alumnos.value as string,
+            cursoId: cursoId as string,
         }
         
-        const response = await fetch('http://localhost:9000/crear-curso',
+        const response = await fetch('http://localhost:9000/crear-trabajo',
             {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json', authentication: `Bearer ` },
                 body: JSON.stringify(data)
             })
 
@@ -39,7 +37,7 @@ export default function CrearTrabajo() {
 
 
         if (devol.success) {
-            Router.push('/cursos')
+            Router.push(`/cursos/${cursoId}`)
         } else {
             alert("Ha ocourrido un error al crear curso. Intente otra vez.")
         }
@@ -59,35 +57,6 @@ export default function CrearTrabajo() {
                         </label>
                         <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-6 leading-tight focus:outline-none focus:bg-white" id="Name" name="Name" type="text" />
                     </div>
-
-                    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                        <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="anio">
-                            Seleccionar Curso:
-                        </label>
-                        <select className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-6 leading-tight focus:outline-none focus:bg-white" name='anio' id='anio'>
-                            <option value="1">1˚ año</option>
-                            <option value="2">2˚ año</option>
-                            <option value="3">3˚ año</option>
-                            <option value="4">4˚ año</option>
-                            <option value="5">5˚ año</option>
-                            <option value="6">6˚ año</option>
-                            <option value="7">7˚ año</option>
-                            <option value="8">8˚ año</option>
-                            <option value="9">9˚ año</option>
-                            <option value="10">10˚ año</option>
-                            <option value="11">11˚ año</option>
-                            <option value="12">12˚ año</option>
-                            <option value="12">13˚ año</option>
-                        </select>
-                    </div>
-
-                    <div className="w-full md:w-1/1 px-3 mb-6 md:mb-0">
-                        <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="materia">
-                            Nombre de la Materia:
-                        </label>
-                        <input className="appearaappearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="materia" name="materia" type="text" />
-                    </div>
-
                 </div>
 
                 

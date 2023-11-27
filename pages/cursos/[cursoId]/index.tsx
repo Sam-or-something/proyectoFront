@@ -118,9 +118,15 @@ export default function cursos({ info }: InferGetServerSidePropsType<typeof getS
     return (
         <main className="" >
             <Navbar></Navbar>
-            <div className="flex min-h-screen flex-col items-center justify-between p-24" id="container">
+            <div className="flex min-h-screen flex-col items-center justify-between p-14" id="container">
+
+                <div className="pb-6 pt-6">
+                    <Link className="object-right bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" href={`${cursoId}/editar`}>
+                        Editar
+                    </Link>
+                </div>
                 <div className="absolute inset-0 bg-grid-slate-100not-prose relative bg-slate-50 rounded-xl overflow-hidden dark:bg-slate-800/25">
-                    
+
                     <table className="table- bg-white shadow-md rounded border-collapse table-auto w-full text-sm" border={2} id="tabla">
                         <caption>Información Sobre los Alumnos</caption>
                         <thead className="table-header-group">
@@ -162,9 +168,8 @@ export default function cursos({ info }: InferGetServerSidePropsType<typeof getS
                     </table>
 
                 </div>
-                <Link className="object-right bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" href= {`${cursoId}/editar`}>
-                        Editar
-                    </Link>
+
+
             </div>
         </main>
     )

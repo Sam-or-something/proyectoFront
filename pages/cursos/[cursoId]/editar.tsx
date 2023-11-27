@@ -42,7 +42,7 @@ export default function CursosEditar({ info }: InferGetServerSidePropsType<typeo
     
     const Router = useRouter();
     const cursoId = Router.query.cursoId
-    const [alumnosInfo, setAlumnosInfo] = useState(info.alumnos);
+    const [alumnosInfo] = useState(info.alumnos);
 
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -71,18 +71,21 @@ export default function CursosEditar({ info }: InferGetServerSidePropsType<typeo
         });
         console.log(cursoId)
         console.log(updatedAlumnosInfo)
-        const response = await fetch(`http://localhost:9000/${cursoId}/editar`,
+
+        const response = await fetch(`http://localhost:9000/cursos/${cursoId}/editar`,
             {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json', Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhbW15QGhvbGEuY29tIiwiaWQiOiIxMCIsImlhdCI6MTcwMTAzNzE5NywiZXhwIjoxNzAxNjQxOTk3fQ.FfFe0O5gY19ZrR19IUlv2IXgJ8hG40dn8MsSWveyi1c` },
+                headers: { 'Content-Type': 'application/json', Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhbW15QGhvbGEuY29tIiwiaWQiOiIxMCIsImlhdCI6MTcwMTAzNzE5NywiZXhwIjoxNzAxNjQxOTk3fQ.FfFe0O5gY19ZrR19IUlv2IXgJ8hG40dn8MsSWveyi1c`},
                 body: JSON.stringify({alumnos: updatedAlumnosInfo})
             })
 
 
         const devol = await response.json()
+
+
         
         if(devol.success === true){
-            Router.push(`cursos/${cursoId}`)
+            Router.replace(`/cursos/${cursoId}`)
         }
 
     }

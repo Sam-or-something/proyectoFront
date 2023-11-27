@@ -70,19 +70,19 @@ export default function CrearCurso() {
                                 Seleccionar Año:
                             </label>
                             <select className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-6 leading-tight focus:outline-none focus:bg-white" name='anio' id='anio'>
-                                <option value="1">1˚ año</option>
-                                <option value="2">2˚ año</option>
-                                <option value="3">3˚ año</option>
-                                <option value="4">4˚ año</option>
-                                <option value="5">5˚ año</option>
-                                <option value="6">6˚ año</option>
-                                <option value="7">7˚ año</option>
-                                <option value="8">8˚ año</option>
-                                <option value="9">9˚ año</option>
-                                <option value="10">10˚ año</option>
-                                <option value="11">11˚ año</option>
-                                <option value="12">12˚ año</option>
-                                <option value="12">13˚ año</option>
+                                <option value="1">1 año</option>
+                                <option value="2">2 año</option>
+                                <option value="3">3 año</option>
+                                <option value="4">4 año</option>
+                                <option value="5">5 año</option>
+                                <option value="6">6 año</option>
+                                <option value="7">7 año</option>
+                                <option value="8">8 año</option>
+                                <option value="9">9 año</option>
+                                <option value="10">10 año</option>
+                                <option value="11">11 año</option>
+                                <option value="12">12 año</option>
+                                <option value="12">13 año</option>
                             </select>
                         </div>
 
