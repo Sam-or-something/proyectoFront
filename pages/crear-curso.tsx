@@ -90,13 +90,13 @@ export default function CrearCurso() {
                             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="materia">
                                 Nombre de la Materia:
                             </label>
-                            <input className="appearaappearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="materia" name="materia" type="text" />
+                            <input className="appearaappearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="materia" name="Materia" type="text" />
                         </div>
                         <div className="w-full md:w-1/1 px-3 mb-3 mb-6 md:mb-0">
                             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="alumnos">
                                 Ingresar alumnos:
                             </label>
-                            <input className="appearance-none block w-full bg-gray-200 text-s text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" placeholder="Ej: Juan Perez; Maria Cruz; etc." id="alumnos" name="alumnos" type="text" />
+                            <input className="appearance-none block w-full bg-gray-200 text-s text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" placeholder="Ej: Juan Perez;Maria Cruz; etc." id="alumnos" name="alumnos" type="text" />
                         </div>
                     </div>
 

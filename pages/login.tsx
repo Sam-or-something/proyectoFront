@@ -46,12 +46,12 @@ export default function logIn() {
         const token = devol.token;
 
 
-
+        const [cookie, setCookie] = useCookies(["jwtToken"])
 
         if (devol.success === "true") {
             alert("Iniciaste sesion correctamente")
 
-            const [cookie, setCookie] = useCookies(["jwtToken"])
+            
 
             setCookie('jwtToken', token ,{
                 httpOnly: true,
