@@ -115,7 +115,7 @@ export const getServerSideProps = (async (context) => {
 
 
 
-export default function cursos({ info }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function CursosId({ info }: InferGetServerSidePropsType<typeof getServerSideProps>) {
     const alumnosData = info.alumnos
     const Router = useRouter()
     const cursoId = Router.query.cursoId
