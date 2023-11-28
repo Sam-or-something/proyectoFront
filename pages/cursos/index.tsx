@@ -2,7 +2,7 @@
 import CartaCurso from '@/components/cartaCurso';
 import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
-import type { InferGetStaticPropsType, GetStaticProps } from 'next'
+import type { InferGetServerSidePropsType, GetServerSideProps } from 'next'
 //import { cookies } from 'next/headers'
 
  /*const curso = [{
@@ -36,7 +36,7 @@ const curso = await response.json()
 }*/
 
 
-export default function ({ curso } : InferGetStaticPropsType<typeof getStaticProps>) {
+export default function ({ curso } : InferGetServerSidePropsType<typeof getServerSideProps>) {
 
     return (
         <main className = "">
@@ -59,16 +59,17 @@ type Curso = {
     materia: string;
 }[]
 
-const jwtToken =""
-
-export const getStaticProps = (async () => {
+export const getServerSideProps = (async (context) => {
+    const {t} = context.query;
+    
     const res = await fetch('http://localhost:9000/cursos', {
         method: 'GET',
-        headers: { 'Content-Type': 'application/json' , authorization : `bearer `}
+        headers: { 'Content-Type': 'application/json' , authorization : `bearer ${t}`}
+ //      headers: { 'Content-Type': 'application/json' , authorization : `bearer 1eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhbW15QGhvbGEuY29tIiwiaWQiOiIxMCIsImlhdCI6MTcwMTAzNzE5NywiZXhwIjoxNzAxNjQxOTk3fQ.FfFe0O5gY19ZrR19IUlv2IXgJ8hG40dn8MsSWveyi1c`}
     })
     const curso = await res.json()
     return { props: { curso } }
-  }) satisfies GetStaticProps<{
+  }) satisfies GetServerSideProps<{
     curso : Curso
   }>
 //array con json de cada curso

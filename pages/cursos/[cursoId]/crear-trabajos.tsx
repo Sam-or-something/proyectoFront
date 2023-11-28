@@ -1,20 +1,24 @@
-'use client'
+import React from 'react'
 import { Inter } from 'next/font/google'
 import { FormEvent } from 'react'
 import { useRouter } from "next/router"
-import { MultiSelect } from "react-multi-select-component"
+import Navbar from '@/components/Navbar'
+
 
 const inter = Inter({ subsets: ['latin'] })
 
 
 
 export default function CrearTrabajo() {
-
     const Router = useRouter()
     const cursoId = Router.query.cursoId
+    const {t} = Router.query
+
     const handleSubmit = async (event: FormEvent) => {
-        // Stop the form from submitting and refreshing the page.
-        event.preventDefault()
+        event.preventDefault()// Stop the form from submitting and refreshing the page.
+        
+        
+        
 
         // Cast the event target to an html form
         const form = event.target as HTMLFormElement
@@ -24,49 +28,41 @@ export default function CrearTrabajo() {
             Name: form.Name.value as string,
             cursoId: cursoId as string,
         }
-        
-        const response = await fetch('http://localhost:9000/crear-trabajo',
+        console.log(data)
+
+        const response = await fetch(`http://localhost:9000/cursos/${cursoId}/crear-trabajo`,
             {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json', authentication: `Bearer ` },
+                headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${t}` },
+                //headers: { 'Content-Type': 'application/json', Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhbW15QGhvbGEuY29tIiwiaWQiOiIxMCIsImlhdCI6MTcwMTAzNzE5NywiZXhwIjoxNzAxNjQxOTk3fQ.FfFe0O5gY19ZrR19IUlv2IXgJ8hG40dn8MsSWveyi1c` },
                 body: JSON.stringify(data)
             })
 
 
         const devol = await response.json()
-
-
-        if (devol.success) {
-            Router.push(`/cursos/${cursoId}`)
-        } else {
-            alert("Ha ocourrido un error al crear curso. Intente otra vez.")
+        
+        console.log(devol)
+        if (devol.success ==  "true") {
+            Router.push(`/cursos/${cursoId}?t=${t}`)
         }
 
-        console.log(devol)
     }
     return (
-        <main className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`} >
-            <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-10 pt-8 pb-10 mb-4 w-xl max-w-xl"  >
-                <label className="block uppercase tracking-wide text-gray-700 text-lg font-bold mb-6">
-                    Crear Trabajo
-                </label>
-                <div className="flex flex-wrap -mx-3 mb-6">
-                    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                        <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="Name">
-                            Nombre del Trabajo:
-                        </label>
-                        <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-6 leading-tight focus:outline-none focus:bg-white" id="Name" name="Name" type="text" />
+        <main>
+            <Navbar></Navbar>
+            <div className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`} >
+            <form onSubmit={handleSubmit} className='bg-white shadow-md rounded px-10 pt-8 pb-10 mb-4 w-xl max-w-xl'>
+                <div className="">
+                    <h2 className="text-gray-900 text-lg mb-1 font-medium title-font">Crear Trabajo</h2>
+                    <div className="relative mb-4">
+                        <label htmlFor="Name" className="leading-7 text-sm text-gray-600">Nombre del Trabajo</label>
+                        <input id="Name" name="Name" type="text" className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                     </div>
-                </div>
-
-                
-
-                <div className="flex items-center justify-end">
-                    <button className="object-right bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-                        Guardar
-                    </button>
+                    <button type='submit' className="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Guardar</button>
                 </div>
             </form>
+        </div>
         </main>
-    ) 
+        
+    )
 }

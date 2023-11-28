@@ -6,6 +6,7 @@ import { Result } from 'postcss';
 import { FormEvent } from 'react'
 import NavbarInicio from '@/components/NavbarInicio';
 import { useCookies } from "react-cookie"
+import { useRouter } from 'next/router';
 
 
 
@@ -14,6 +15,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 
 export default function logIn() {
+    const Router = useRouter()
     const HandleSubmit = async (event: FormEvent) => {
 
         event.preventDefault()
@@ -40,23 +42,23 @@ export default function logIn() {
 
 
         const devol = await response.json();
+        console.log(devol)
 
 
-        // Set a cookie with the secure and HttpOnly flags
-        const token = devol.token;
+        // const [cookie, setCookie] = useCookies(["jwtToken"])
 
-
-        const [cookie, setCookie] = useCookies(["jwtToken"])
-
-        if (devol.success === "true") {
+        if (devol.success == "true") {
             alert("Iniciaste sesion correctamente")
 
+            const token = devol.token;
             
 
-            setCookie('jwtToken', token ,{
-                httpOnly: true,
-                path:"/"
-            })
+            Router.push(`/cursos?t=${token}`)
+
+            // setCookie('jwtToken', token ,{
+            //     httpOnly: true,
+            //     path:"/"
+            // })
         }
     }
 

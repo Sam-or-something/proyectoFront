@@ -36,7 +36,7 @@ export default function Register() {
 
 
         const result = await response.json()
-        Router.push('/login')
+        if (result.success == "true"){Router.push('/login')}
         console.log(result)
     }
     return (
