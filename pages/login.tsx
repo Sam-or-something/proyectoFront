@@ -10,7 +10,7 @@ import { useRouter } from 'next/router';
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function logIn() {
+export default function LogIn() {
     const Router = useRouter()
     const HandleSubmit = async (event: FormEvent) => {
 

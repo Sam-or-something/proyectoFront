@@ -3,7 +3,6 @@ import CartaCurso from '@/components/cartaCurso';
 import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import type { InferGetServerSidePropsType, GetServerSideProps } from 'next'
-import { Rowdies } from 'next/font/google';
 
  /*const curso = [{
      id: 1134,
@@ -23,7 +22,7 @@ import { Rowdies } from 'next/font/google';
  },] */
 
 
-export default function ({ curso } : InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Cursos({ curso } : InferGetServerSidePropsType<typeof getServerSideProps>) {
 
     return (
         <main className = "">
