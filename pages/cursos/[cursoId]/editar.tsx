@@ -22,12 +22,13 @@ type Info = {
 export const getServerSideProps = (async (context) => {
 
     const cursoId = context.query.cursoId
-
+    const authToken = context.req.headers.cookie?.split('; ').find(row => row.startsWith('authToken='))?.split('=')[1];
 
     const res = await fetch(`http://localhost:9000/cursos/${cursoId}/editar`, {
         method: 'GET',
         headers: {
-            'Content-Type': 'application/json', authorization: `bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhbW15QGhvbGEuY29tIiwiaWQiOiIxMCIsImlhdCI6MTcwMTAzNzE5NywiZXhwIjoxNzAxNjQxOTk3fQ.FfFe0O5gY19ZrR19IUlv2IXgJ8hG40dn8MsSWveyi1c`,
+            'Content-Type': 'application/json', authorization: `bearer ${authToken}`
+//            'Content-Type': 'application/json', authorization: `bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhbW15QGhvbGEuY29tIiwiaWQiOiIxMCIsImlhdCI6MTcwMTAzNzE5NywiZXhwIjoxNzAxNjQxOTk3fQ.FfFe0O5gY19ZrR19IUlv2IXgJ8hG40dn8MsSWveyi1c`,
         }
     })
     const info = await res.json()
@@ -41,7 +42,6 @@ export default function CursosEditar({ info }: InferGetServerSidePropsType<typeo
 
     const Router = useRouter();
     const cursoId = Router.query.cursoId
-    const {t} = Router.query
     const [alumnosInfo] = useState(info.alumnos);
 
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -69,13 +69,16 @@ export default function CursosEditar({ info }: InferGetServerSidePropsType<typeo
                 trabajos: updatedTrabajos,
             };
         });
+
         console.log(cursoId)
         console.log(updatedAlumnosInfo)
+
+        const authToken = sessionStorage.getItem('authToken')
 
         const response = await fetch(`http://localhost:9000/cursos/${cursoId}/editar`,
             {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${t}` },
+                headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${authToken}` },
                 //headers: { 'Content-Type': 'application/json', Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhbW15QGhvbGEuY29tIiwiaWQiOiIxMCIsImlhdCI6MTcwMTAzNzE5NywiZXhwIjoxNzAxNjQxOTk3fQ.FfFe0O5gY19ZrR19IUlv2IXgJ8hG40dn8MsSWveyi1c` },
                 body: JSON.stringify({ alumnos: updatedAlumnosInfo })
             })
@@ -86,7 +89,7 @@ export default function CursosEditar({ info }: InferGetServerSidePropsType<typeo
         console.log(devol)
 
         if (devol.success == true) {
-            Router.push(`/cursos/${cursoId}?t=${t}`)
+            Router.push(`/cursos/${cursoId}`)
         }
 
     }

@@ -4,6 +4,7 @@ import type { InferGetServerSidePropsType, GetServerSideProps, } from 'next'
 import { Key, ReactElement, JSXElementConstructor, ReactNode, ReactPortal, PromiseLikeOfReactNode, useState } from "react";
 import Link from "next/link";
 import CrearTrabajo from "@/pages/cursos/[cursoId]/crear-trabajos";
+import { tokenToString } from "typescript";
 
 
 /*const info = {
@@ -96,12 +97,13 @@ import CrearTrabajo from "@/pages/cursos/[cursoId]/crear-trabajos";
 export const getServerSideProps = (async (context) => {
 
     const cursoId = context.query.cursoId
-    const {t} = context.query
+    const authToken = context.req.headers.cookie?.split('; ').find(row => row.startsWith('authToken='))?.split('=')[1];
 
     const res = await fetch(`http://localhost:9000/cursos/${cursoId}`, {
         method: 'GET',
         headers: {
-            'Content-Type': 'application/json', authorization: `bearer ${t}`,
+            'Content-Type': 'application/json', authorization: `bearer ${authToken}`,
+//            'Content-Type': 'application/json', authorization: `bearer ${t}`,
 //            'Content-Type': 'application/json', authorization: `bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhbW15QGhvbGEuY29tIiwiaWQiOiIxMCIsImlhdCI6MTcwMTAzNzE5NywiZXhwIjoxNzAxNjQxOTk3fQ.FfFe0O5gY19ZrR19IUlv2IXgJ8hG40dn8MsSWveyi1c`,            'Content-Type': 'application/json', authorization: `bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhbW15QGhvbGEuY29tIiwiaWQiOiIxMCIsImlhdCI6MTcwMTAzNzE5NywiZXhwIjoxNzAxNjQxOTk3fQ.FfFe0O5gY19ZrR19IUlv2IXgJ8hG40dn8MsSWveyi1c`,
         }
     })
@@ -117,8 +119,7 @@ export default function cursos({ info }: InferGetServerSidePropsType<typeof getS
     const alumnosData = info.alumnos
     const Router = useRouter()
     const cursoId = Router.query.cursoId
-    const {t} = Router.query
-    
+
     return (
         <main className="" >
             <Navbar></Navbar>
@@ -170,9 +171,9 @@ export default function cursos({ info }: InferGetServerSidePropsType<typeof getS
                         </table>
                     </div>
                     <div className="flex pl-4 mt-4 lg:w-2/3 w-full mx-auto">
-                        <Link href={`/cursos/${cursoId}/crear-trabajos?t=${t}`} className="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0">Crear Trabajos</Link>
+                        <Link href={`/cursos/${cursoId}/crear-trabajos`} className="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0">Crear Trabajos</Link>
 
-                        <Link href={`/cursos/${cursoId}/editar?t=${t}`} className="flex ml-auto bg-blue-500 hover:bg-blue-700 text-white border-0 py-2 px-6 focus:outline-none rounded">Editar</Link>
+                        <Link href={`/cursos/${cursoId}/editar`} className="flex ml-auto bg-blue-500 hover:bg-blue-700 text-white border-0 py-2 px-6 focus:outline-none rounded">Editar</Link>
                     </div>
                 </div>
             </div>

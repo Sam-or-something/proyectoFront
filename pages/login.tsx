@@ -8,11 +8,7 @@ import NavbarInicio from '@/components/NavbarInicio';
 import { useCookies } from "react-cookie"
 import { useRouter } from 'next/router';
 
-
-
 const inter = Inter({ subsets: ['latin'] })
-
-
 
 export default function logIn() {
     const Router = useRouter()
@@ -42,23 +38,16 @@ export default function logIn() {
 
 
         const devol = await response.json();
-        console.log(devol)
-
-
-        // const [cookie, setCookie] = useCookies(["jwtToken"])
 
         if (devol.success == "true") {
-            alert("Iniciaste sesion correctamente")
 
             const token = devol.token;
-            
+            document.cookie = `authToken=${token}; path=/`;
+            sessionStorage.setItem('authToken', token);
 
-            Router.push(`/cursos?t=${token}`)
-
-            // setCookie('jwtToken', token ,{
-            //     httpOnly: true,
-            //     path:"/"
-            // })
+            Router.push(`/cursos`)
+        } else {
+            alert("La sesión no pudo iniciarse. Verifique sus credenciales.")
         }
     }
 

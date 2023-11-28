@@ -12,7 +12,6 @@ const inter = Inter({ subsets: ['latin'] })
 export default function CrearTrabajo() {
     const Router = useRouter()
     const cursoId = Router.query.cursoId
-    const {t} = Router.query
 
     const handleSubmit = async (event: FormEvent) => {
         event.preventDefault()// Stop the form from submitting and refreshing the page.
@@ -30,10 +29,12 @@ export default function CrearTrabajo() {
         }
         console.log(data)
 
+        const authToken = sessionStorage.getItem('authToken')
+
         const response = await fetch(`http://localhost:9000/cursos/${cursoId}/crear-trabajo`,
             {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${t}` },
+                headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${authToken}` },
                 //headers: { 'Content-Type': 'application/json', Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhbW15QGhvbGEuY29tIiwiaWQiOiIxMCIsImlhdCI6MTcwMTAzNzE5NywiZXhwIjoxNzAxNjQxOTk3fQ.FfFe0O5gY19ZrR19IUlv2IXgJ8hG40dn8MsSWveyi1c` },
                 body: JSON.stringify(data)
             })
@@ -43,7 +44,7 @@ export default function CrearTrabajo() {
         
         console.log(devol)
         if (devol.success ==  "true") {
-            Router.push(`/cursos/${cursoId}?t=${t}`)
+            Router.push(`/cursos/${cursoId}`)
         }
 
     }
