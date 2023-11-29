@@ -24,7 +24,7 @@ export const getServerSideProps = (async (context) => {
     const cursoId = context.query.cursoId
     const authToken = context.req.headers.cookie?.split('; ').find(row => row.startsWith('authToken='))?.split('=')[1];
 
-    const res = await fetch(`http://localhost:9000/cursos/${cursoId}/editar`, {
+    const res = await fetch(`https://proyecto-jade-eta.vercel.app/${cursoId}/editar`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json', authorization: `bearer ${authToken}`
@@ -75,7 +75,7 @@ export default function CursosEditar({ info }: InferGetServerSidePropsType<typeo
 
         const authToken = sessionStorage.getItem('authToken')
 
-        const response = await fetch(`http://localhost:9000/cursos/${cursoId}/editar`,
+        const response = await fetch(`https://proyecto-jade-eta.vercel.app/${cursoId}/editar`,
             {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${authToken}` },

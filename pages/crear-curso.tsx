@@ -31,7 +31,7 @@ export default function CrearCurso() {
         const authToken = sessionStorage.getItem('authToken')
 
         //POST para crear un nuevo curso
-        const response = await fetch(`http://localhost:9000/crear-curso`,
+        const response = await fetch(`https://proyecto-jade-eta.vercel.app/crear-curso`,
             {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', Authorization: `bearer ${authToken}`},
@@ -41,7 +41,7 @@ export default function CrearCurso() {
         const devol = await response.json()
 
         // Redirigir a la página de cursos si es exitoso; de lo contrario, mostrar un mensaje de error
-        if (devol.success) {
+        if (devol.success == 'true') {
             Router.push('/cursos')
         } else {
             alert("Ha ocourrido un error al crear curso. Intente otra vez.")

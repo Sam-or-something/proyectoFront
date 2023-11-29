@@ -31,7 +31,7 @@ export default function CrearTrabajo() {
 
         const authToken = sessionStorage.getItem('authToken')
 
-        const response = await fetch(`http://localhost:9000/cursos/${cursoId}/crear-trabajo`,
+        const response = await fetch(`https://proyecto-jade-eta.vercel.app/cursos/${cursoId}/crear-trabajo`,
             {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${authToken}` },

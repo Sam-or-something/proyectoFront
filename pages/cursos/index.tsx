@@ -49,7 +49,7 @@ type Curso = {
 export const getServerSideProps = (async (context) => {
     const authToken = context.req.headers.cookie?.split('; ').find(row => row.startsWith('authToken='))?.split('=')[1];
 
-    const res = await fetch('http://localhost:9000/cursos', {
+    const res = await fetch('https://proyecto-jade-eta.vercel.app/cursos', {
         method: 'GET',
         headers: { 'Content-Type': 'application/json', authorization: `bearer ${authToken}` }
     })
