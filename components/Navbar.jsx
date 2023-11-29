@@ -1,14 +1,10 @@
 import React from "react";
 import Link from "next/link";
 import Image from 'next/image'
-import { useRouter } from "next/router";
 
 function CerrarSesion(){
     document.cookie = `authToken=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;`
     sessionStorage.clear()
-
-    const Router = useRouter()
-    Router.push("/login")
 }
 
 function Navbar() {
@@ -20,7 +16,7 @@ function Navbar() {
                 <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
                     <Link className="mr-5 hover:text-gray-900" href={`/crear-curso`}>Crear Cursos</Link>
                     <Link className="mr-5 hover:text-gray-900" href={`/cursos`}>Mis Cursos</Link>
-                    <button className="" onClick={CerrarSesion}>Cerrar Sesión</button>
+                    <Link href={`/login`} className="" onClick={CerrarSesion}>Cerrar Sesión</Link>
                 </nav>
             </div>
         </header>
