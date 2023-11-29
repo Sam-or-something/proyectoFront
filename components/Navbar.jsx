@@ -1,9 +1,12 @@
 import React from "react";
 import Link from "next/link";
 import Image from 'next/image'
+import { useRouter } from "next/router";
 
 function cerrarSesion(){
     document.cookie = `authToken=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;`
+    sessionStorage.removeItem(authToken)
+    useRouter().push("/")
 }
 
 function Navbar() {
