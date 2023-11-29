@@ -2,10 +2,8 @@
 
 import { Inter } from 'next/font/google'
 import Link from 'next/link'
-import { Result } from 'postcss';
 import { FormEvent } from 'react'
 import NavbarInicio from '@/components/NavbarInicio';
-import { useCookies } from "react-cookie"
 import { useRouter } from 'next/router';
 
 const inter = Inter({ subsets: ['latin'] })

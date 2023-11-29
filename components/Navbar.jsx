@@ -6,7 +6,8 @@ import { useRouter } from "next/router";
 function CerrarSesion(){
     document.cookie = `authToken=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;`
     sessionStorage.clear()
-    useRouter().push("/login")
+    Router = useRouter()
+    Router.push("/login")
 }
 
 function Navbar() {
