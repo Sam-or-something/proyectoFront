@@ -44,7 +44,7 @@ export default function CrearCurso() {
         if (devol.success == 'true') {
             Router.push('/cursos')
         } else {
-            alert("Ha ocourrido un error al crear curso. Intente otra vez.")
+            alert(`Ha ocourrido un error al crear curso. ${devol.comment} .Intente otra vez.`)
         }
 
     }

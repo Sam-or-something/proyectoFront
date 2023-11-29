@@ -90,6 +90,8 @@ export default function CursosEditar({ info }: InferGetServerSidePropsType<typeo
 
         if (devol.success == true) {
             Router.push(`/cursos/${cursoId}`)
+        }else{
+            alert(`No se ha logrado editar.`)
         }
 
     }

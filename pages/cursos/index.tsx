@@ -1,6 +1,6 @@
-
+import CartaCrearCurso from '@/components/cartaCrearCurso'
 import CartaCurso from '@/components/cartaCurso';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Navbar from '@/components/Navbar';
 import type { InferGetServerSidePropsType, GetServerSideProps } from 'next'
 
@@ -32,6 +32,7 @@ export default function Cursos({ curso }: InferGetServerSidePropsType<typeof get
                     {curso.map((curso: any) => (
                         CartaCurso(curso)
                     ))}
+                    <CartaCrearCurso />
                 </div>
             </div>
         </main>

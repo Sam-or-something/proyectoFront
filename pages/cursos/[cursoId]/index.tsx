@@ -3,8 +3,6 @@ import { useRouter } from "next/dist/client/router";
 import type { InferGetServerSidePropsType, GetServerSideProps, } from 'next'
 import { Key, ReactElement, JSXElementConstructor, ReactNode, ReactPortal, PromiseLikeOfReactNode, useState } from "react";
 import Link from "next/link";
-import CrearTrabajo from "@/pages/cursos/[cursoId]/crear-trabajos";
-import { tokenToString } from "typescript";
 
 
 /*const info = {
@@ -103,8 +101,6 @@ export const getServerSideProps = (async (context) => {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json', authorization: `bearer ${authToken}`,
-//            'Content-Type': 'application/json', authorization: `bearer ${t}`,
-//            'Content-Type': 'application/json', authorization: `bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhbW15QGhvbGEuY29tIiwiaWQiOiIxMCIsImlhdCI6MTcwMTAzNzE5NywiZXhwIjoxNzAxNjQxOTk3fQ.FfFe0O5gY19ZrR19IUlv2IXgJ8hG40dn8MsSWveyi1c`,            'Content-Type': 'application/json', authorization: `bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhbW15QGhvbGEuY29tIiwiaWQiOiIxMCIsImlhdCI6MTcwMTAzNzE5NywiZXhwIjoxNzAxNjQxOTk3fQ.FfFe0O5gY19ZrR19IUlv2IXgJ8hG40dn8MsSWveyi1c`,
         }
     })
     const info = await res.json()

@@ -47,7 +47,7 @@ export default function LogIn() {
 
             Router.push(`/cursos`)
         } else {
-            alert("La sesión no pudo iniciarse. Verifique sus credenciales.")
+            alert(`La sesión no pudo iniciarse. ${devol.comment}. Verifique sus credenciales.`)
         }
     }
 

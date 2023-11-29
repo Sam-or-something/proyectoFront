@@ -45,6 +45,8 @@ export default function CrearTrabajo() {
         console.log(devol)
         if (devol.success ==  "true") {
             Router.push(`/cursos/${cursoId}`)
+        }else{
+            alert(`No se ha logrado crear un trabajo. ${devol.comment}.`)
         }
 
     }

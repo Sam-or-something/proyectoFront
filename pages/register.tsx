@@ -36,8 +36,11 @@ export default function Register() {
 
 
         const result = await response.json()
-        if (result.success == "true"){Router.push('/login')}
-        console.log(result)
+        if (result.success == "true"){
+            Router.push('/login')
+        }else{
+            alert(`No se ha logrado registrar. ${result.comment}. Verificá las credenciales.`)
+        }
     }
     return (
         <main>
