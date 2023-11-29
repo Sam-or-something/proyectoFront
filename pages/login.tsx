@@ -16,9 +16,6 @@ export default function LogIn() {
 
         const form = event.target as HTMLFormElement
 
-        console.log(form.email.value);
-        console.log(form.password.value);
-
 
         const data = {
             email: form.email.value as string,
