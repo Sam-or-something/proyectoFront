@@ -16,7 +16,7 @@ function Navbar() {
                 <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
                     <Link className="mr-5 hover:text-gray-900" href={`/crear-curso`}>Crear Cursos</Link>
                     <Link className="mr-5 hover:text-gray-900" href={`/cursos`}>Mis Cursos</Link>
-                    <Link href={`/index`} className="" onClick={CerrarSesion}>Cerrar Sesión</Link>
+                    <Link href={`/index`} className="inline-flex items-center bg-blue-500 border-0 py-1 px-3 focus:outline-none hover:bg-blue-700 rounded text-white mt-4 md:mt-0" onClick={CerrarSesion}>Cerrar Sesión</Link>
                 </nav>
             </div>
         </header>
