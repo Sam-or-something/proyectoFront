@@ -24,4 +24,11 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+  background-attachment: fixed;
+  min-height: fit-content;
+}
+
+html{
+  margin: 0;
+  height: f;
 }

@@ -51,7 +51,7 @@ export default function CrearCurso() {
     return (
         <main>
             <Navbar></Navbar>
-            <div className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`} >
+            <div className={`flex min-h-screen flex-col items-center justify-between p-24`} >
                 <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-10 pt-8 pb-10 mb-4 w-xl max-w-xl"  >
                     <label className="block uppercase tracking-wide text-gray-700 text-lg font-bold mb-6">
                         Crear Curso

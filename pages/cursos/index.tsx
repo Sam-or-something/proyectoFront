@@ -4,33 +4,35 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import type { InferGetServerSidePropsType, GetServerSideProps } from 'next'
 
- /*const curso = [{
-     id: 1134,
-     anio: "12",
-     name: "5tF",
-     materia: "matematica"
- }, {
-     id: 245,
-     anio: "11",
-     name: "4tc",
-     materia: "ingles"
- }, {
-     id: 1,
-     anio: "11",
-     name: "4tf",
-     materia: "ingles"
- },] */
+/*const curso = [{
+    id: 1134,
+    anio: "12",
+    name: "5tF",
+    materia: "matematica"
+}, {
+    id: 245,
+    anio: "11",
+    name: "4tc",
+    materia: "ingles"
+}, {
+    id: 1,
+    anio: "11",
+    name: "4tf",
+    materia: "ingles"
+},] */
 
 
-export default function Cursos({ curso } : InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Cursos({ curso }: InferGetServerSidePropsType<typeof getServerSideProps>) {
 
     return (
-        <main className = "">
+        <main className="">
             <Navbar></Navbar>
-            <div className="grid grid-cols-4" >
-                {curso.map((curso: any) => (
-                    CartaCurso(curso)
-                ))}
+            <div className='flex min-h-screen flex-col  justify-between p-2 mb-24'>
+                <div className="grid grid-cols-4" >
+                    {curso.map((curso: any) => (
+                        CartaCurso(curso)
+                    ))}
+                </div>
             </div>
         </main>
     )
@@ -49,13 +51,13 @@ export const getServerSideProps = (async (context) => {
 
     const res = await fetch('http://localhost:9000/cursos', {
         method: 'GET',
-        headers: { 'Content-Type': 'application/json' , authorization : `bearer ${authToken}`}
+        headers: { 'Content-Type': 'application/json', authorization: `bearer ${authToken}` }
     })
     const curso = await res.json()
     return { props: { curso } }
-  }) satisfies GetServerSideProps<{
-    curso : Curso
-  }>
+}) satisfies GetServerSideProps<{
+    curso: Curso
+}>
 
 //array con json de cada curso
 //sacar la informacion por cada curso
