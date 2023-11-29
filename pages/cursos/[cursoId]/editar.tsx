@@ -49,7 +49,6 @@ export default function CursosEditar({ info }: InferGetServerSidePropsType<typeo
 
 
         const formData = new FormData(event.currentTarget);
-        console.log(formData)
         const updatedAlumnosInfo = alumnosInfo.map((alumno: { trabajos: any[]; id: any; }) => {
             const updatedTrabajos = alumno.trabajos.map((trabajo) => {
                 const newNota = formData.get(`${trabajo.idTrabajo}${trabajo.nota}`) as string;
@@ -70,8 +69,6 @@ export default function CursosEditar({ info }: InferGetServerSidePropsType<typeo
             };
         });
 
-        console.log(cursoId)
-        console.log(updatedAlumnosInfo)
 
         const authToken = sessionStorage.getItem('authToken')
 
@@ -86,7 +83,7 @@ export default function CursosEditar({ info }: InferGetServerSidePropsType<typeo
 
         const devol = await response.json()
 
-        console.log(devol)
+
 
         if (devol.success == true) {
             Router.push(`/cursos/${cursoId}`)

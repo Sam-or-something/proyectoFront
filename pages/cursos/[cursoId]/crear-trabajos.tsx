@@ -27,7 +27,6 @@ export default function CrearTrabajo() {
             Name: form.Name.value as string,
             cursoId: cursoId as string,
         }
-        console.log(data)
 
         const authToken = sessionStorage.getItem('authToken')
 
@@ -42,7 +41,7 @@ export default function CrearTrabajo() {
 
         const devol = await response.json()
         
-        console.log(devol)
+
         if (devol.success ==  "true") {
             Router.push(`/cursos/${cursoId}`)
         }else{
